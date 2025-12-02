@@ -13,8 +13,8 @@ import {
   IconButton,
   CircularProgress,
 } from "@mui/material";
-import { MdArrowBack, MdSave, MdAdd } from "react-icons/md";
-import { useEffect, useState } from "react";
+import { MdArrowBack, MdSave, MdAdd, MdClose } from "react-icons/md";
+import { useEffect, useState, useRef } from "react";
 import { useEditor, EditorContent, Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useRouter } from "next/navigation";
@@ -31,77 +31,142 @@ interface ImageUploadProps {
 }
 
 function ImageUpload({ imageUrl, onImageUpload }: ImageUploadProps) {
-  const [isEditing, setIsEditing] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleUrlSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const url = formData.get("imageUrl") as string;
-    if (url) {
-      onImageUpload(url);
-      setIsEditing(false);
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith("image/")) {
+      setError("Please select an image file");
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      setError("Image must be smaller than 5MB");
+      return;
+    }
+
+    setUploading(true);
+    setError(null);
+
+    try {
+      // Convert file to base64
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const base64String = event.target?.result as string;
+        onImageUpload(base64String);
+      };
+      reader.readAsDataURL(file);
+      setError(null);
+
+      // Reset file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    } catch (err) {
+      console.error("Upload error:", err);
+      setError("Failed to upload image. Please try again.");
+    } finally {
+      setUploading(false);
     }
   };
 
   return (
     <Box sx={{ mb: 3 }}>
-      {isEditing ? (
-        <form onSubmit={handleUrlSubmit}>
-          <Box sx={{ display: "flex", gap: 1 }}>
-            <TextField
-              fullWidth
-              name="imageUrl"
-              label="Image URL"
-              defaultValue={imageUrl}
-              size="small"
-            />
-            <Button type="submit" variant="contained" size="small">
-              Save
-            </Button>
-            <Button size="small" onClick={() => setIsEditing(false)}>
-              Cancel
-            </Button>
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleFileSelect}
+        style={{ display: "none" }}
+      />
+      <Box
+        onClick={() => !uploading && fileInputRef.current?.click()}
+        sx={{
+          position: "relative",
+          width: "100%",
+          height: 200,
+          borderRadius: 2,
+          overflow: "hidden",
+          bgcolor: "#f5f5f5",
+          cursor: uploading ? "default" : "pointer",
+          border: "2px dashed #ccc",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          "&:hover": {
+            bgcolor: uploading ? "#f5f5f5" : "#f0f0f0",
+            borderColor: uploading ? "#ccc" : "#999",
+          },
+        }}
+      >
+        {uploading ? (
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 1,
+            }}
+          >
+            <CircularProgress size={40} />
+            <Typography>Uploading...</Typography>
           </Box>
-        </form>
-      ) : (
-        <Box
-          onClick={() => setIsEditing(true)}
-          sx={{
-            position: "relative",
-            width: "100%",
-            height: 200,
-            borderRadius: 2,
-            overflow: "hidden",
-            bgcolor: "#f5f5f5",
-            cursor: "pointer",
-            "&:hover": {
-              opacity: 0.9,
-            },
-          }}
-        >
-          {imageUrl ? (
+        ) : imageUrl ? (
+          <>
             <Image
               src={imageUrl}
               alt="Blog header"
               fill
               style={{ objectFit: "cover" }}
             />
-          ) : (
-            <Box
+            <IconButton
+              onClick={(e) => {
+                e.stopPropagation();
+                onImageUpload("");
+              }}
               sx={{
-                height: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexDirection: "column",
-                gap: 1,
+                position: "absolute",
+                top: 8,
+                right: 8,
+                bgcolor: "rgba(0,0,0,0.5)",
+                color: "white",
+                "&:hover": {
+                  bgcolor: "rgba(0,0,0,0.7)",
+                },
               }}
             >
-              <MdAdd size={24} />
-              <Typography>Add Header Image URL</Typography>
-            </Box>
-          )}
-        </Box>
+              <MdClose />
+            </IconButton>
+          </>
+        ) : (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+              gap: 1,
+              pointerEvents: "none",
+            }}
+          >
+            <MdAdd size={32} />
+            <Typography>Click to upload image</Typography>
+            <Typography variant="caption" sx={{ color: "#999" }}>
+              PNG, JPG, GIF up to 5MB
+            </Typography>
+          </Box>
+        )}
+      </Box>
+      {error && (
+        <Typography sx={{ color: "#d32f2f", mt: 1, fontSize: "0.875rem" }}>
+          {error}
+        </Typography>
       )}
     </Box>
   );

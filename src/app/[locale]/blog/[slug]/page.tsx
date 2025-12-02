@@ -12,6 +12,15 @@ type Params = Promise<{
   slug: string;
 }>;
 
+// Strip HTML tags and extract plain text
+function stripHtmlTags(html: string): string {
+  return html
+    .replace(/<[^>]*>/g, " ") // Remove HTML tags
+    .replace(/&nbsp;/g, " ") // Replace HTML entities
+    .replace(/\s+/g, " ") // Replace multiple spaces with single space
+    .trim();
+}
+
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug, locale } = await params;
   const blog = await blogService.getBlogBySlug(slug);
@@ -23,12 +32,11 @@ export async function generateMetadata({ params }: { params: Params }) {
     };
   }
 
-  const defaultImage =
-    "https://images.unsplash.com/photo-1499750310107-5fef28a66643";
+  const plainTextContent = stripHtmlTags(blog.content || "").substring(0, 160);
 
   return {
     title: `${blog.title} | SONDER Photography`,
-    description: blog.content?.substring(0, 160),
+    description: plainTextContent,
     alternates: {
       canonical: `${env.SITE_URL}/${locale}/blog/${slug}`,
       languages: {
@@ -38,15 +46,15 @@ export async function generateMetadata({ params }: { params: Params }) {
     },
     openGraph: {
       title: blog.title,
-      description: blog.content?.substring(0, 160),
+      description: plainTextContent,
       type: "article",
       url: `${env.SITE_URL}/${locale}/blog/${slug}`,
       images: [
         {
-          url: blog.imageUrl || defaultImage,
+          url: `${env.SITE_URL}/api/thumbnail/${slug}`,
           width: 1200,
           height: 630,
-          alt: blog.title,
+          alt: plainTextContent,
         },
       ],
       publishedTime: blog.createdAt,
@@ -55,8 +63,8 @@ export async function generateMetadata({ params }: { params: Params }) {
     twitter: {
       card: "summary_large_image",
       title: blog.title,
-      description: blog.content?.substring(0, 160),
-      images: [blog.imageUrl || defaultImage],
+      description: plainTextContent,
+      images: `${env.SITE_URL}/api/thumbnail/${slug}`,
     },
   };
 }
@@ -69,14 +77,13 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     notFound();
   }
 
-  const defaultImage =
-    "https://images.unsplash.com/photo-1499750310107-5fef28a66643";
+  const plainTextContent = stripHtmlTags(blog.content || "").substring(0, 160);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: blog.title,
-    image: blog.imageUrl || defaultImage,
+    image: `${env.SITE_URL}/api/thumbnail/${slug}`,
     datePublished: blog.createdAt.toDate().toISOString(),
     dateModified: blog.updatedAt.toDate().toISOString(),
     author: {
@@ -95,7 +102,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       "@type": "WebPage",
       "@id": `${env.SITE_URL}/${locale}/blog/${slug}`,
     },
-    description: blog.content?.substring(0, 160),
+    description: plainTextContent,
   };
 
   return (
@@ -116,7 +123,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             >
               <Image
                 src={blog.imageUrl}
-                alt={blog.title}
+                alt={plainTextContent || blog.title}
                 fill
                 style={{ objectFit: "cover" }}
                 priority
@@ -124,7 +131,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
               <ShareButtons
                 url={`${env.SITE_URL}/${locale}/blog/${slug}`}
                 title={blog.title}
-                description={blog.content?.substring(0, 160)}
+                description={plainTextContent}
               />
             </Box>
           )}

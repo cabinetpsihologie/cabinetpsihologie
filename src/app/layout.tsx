@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -64,6 +65,34 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          href="https://assets.calendly.com/assets/external/widget.css"
+          rel="stylesheet"
+        />
+        <Script
+          src="https://assets.calendly.com/assets/external/widget.js"
+          strategy="afterInteractive"
+        />
+        <Script id="calendly-init" strategy="afterInteractive">
+          {`
+    function initCalendly() {
+      if (typeof Calendly !== "undefined") {
+        Calendly.initBadgeWidget({
+          url: 'https://calendly.com/cabinetpsihologiefeketeandrea/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=ffdeb3&text_color=000000&primary_color=5d8801',
+          text: 'Foglalj időpontot',
+          color: '#ffdaa0',
+          textColor: '#000000',
+          branding: true
+        });
+      } else {
+        setTimeout(initCalendly, 300);
+      }
+    }
+    initCalendly();
+  `}
+        </Script>
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SpeedInsights />
         <Analytics />

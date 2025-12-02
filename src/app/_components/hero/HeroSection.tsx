@@ -128,7 +128,7 @@ HeroSectionProps) {
         mt: 8,
       }}
     >
-      {HeroParallaxDemo()}
+      {/* {HeroParallaxDemo()} */}
       {/* <Fade in timeout={1000}>
         <Box sx={{ position: "absolute", width: "100%", height: "100%" }}>
           <Image
