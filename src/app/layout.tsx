@@ -81,7 +81,7 @@ export default function RootLayout({
         Calendly.initBadgeWidget({
           url: 'https://calendly.com/cabinetpsihologiefeketeandrea/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=ffdeb3&text_color=000000&primary_color=5d8801',
           text: 'Foglalj időpontot',
-          color: '#ffdaa0',
+          color: '#6B9B8A',
           textColor: '#000000',
           branding: true
         });

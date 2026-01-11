@@ -57,11 +57,11 @@ export default function ContactForm() {
         ref={form}
         onSubmit={handleSubmit}
         sx={{
-          bgcolor: "rgba(255,255,255,0.95)",
+          // bgcolor: "rgba(255,255,255,0.95)",
           backdropFilter: "blur(20px)",
           borderRadius: 4,
-          p: { xs: 4, md: 6 },
-          boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
+          // p: { xs: 4, md: 6 },
+          // boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
         }}
       >
         <Typography
