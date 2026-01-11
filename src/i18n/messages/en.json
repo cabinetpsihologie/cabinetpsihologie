@@ -16,13 +16,52 @@
   },
   "home": {
     "hero": {
-      "title": "Capturing Timeless Moments",
-      "subtitle": "Professional Wedding Photography in Hungary",
-      "cta": "Book a Consultation"
+      "title": "Your Path to Emotional Wellness",
+      "subtitle": "Professional Psychological Services in a Calm, Welcoming Environment",
+      "cta": "Schedule Your Session"
     },
-    "portfolio": {
-      "title": "Recent Works",
-      "subtitle": "A glimpse into our latest wedding photography collections"
+    "introduction": {
+      "title": "Welcome to Our Practice",
+      "description": "We provide compassionate, evidence-based psychological services tailored to your unique needs. Our serene office environment is designed to help you feel safe and supported as you embark on your journey toward emotional wellbeing and personal growth."
+    },
+    "services": {
+      "title": "Our Services",
+      "subtitle": "Specialized Care for Your Mental Health",
+      "items": {
+        "psychotherapy": {
+          "title": "Individual Psychotherapy",
+          "description": "Compassionate one-on-one sessions addressing anxiety, depression, stress, and personal challenges with evidence-based therapeutic approaches."
+        },
+        "cognitive": {
+          "title": "Cognitive Behavioral Therapy",
+          "description": "Practical techniques to reshape negative thought patterns and build healthier coping mechanisms for lasting change."
+        },
+        "couples": {
+          "title": "Couples Counseling",
+          "description": "Professional guidance to improve communication, resolve conflicts, and strengthen emotional connection in relationships."
+        },
+        "family": {
+          "title": "Family Therapy",
+          "description": "Healing family dynamics and fostering understanding among all members in a supportive therapeutic environment."
+        },
+        "anxiety": {
+          "title": "Anxiety Management",
+          "description": "Specialized treatment for anxiety disorders with proven techniques including mindfulness and relaxation strategies."
+        },
+        "trauma": {
+          "title": "Trauma Recovery",
+          "description": "Compassionate support for processing traumatic experiences and reclaiming your sense of safety and wellbeing."
+        }
+      }
+    },
+    "gallery": {
+      "title": "Our Office",
+      "subtitle": "A Tranquil Space Designed for Your Comfort"
+    },
+    "cta": {
+      "title": "Ready to Begin Your Journey?",
+      "subtitle": "We're here to support you. Reach out today to schedule your first consultation.",
+      "button": "Get in Touch"
     }
   },
   "contact": {

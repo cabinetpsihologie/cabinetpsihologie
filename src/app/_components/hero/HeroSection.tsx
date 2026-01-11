@@ -1,193 +1,138 @@
 "use client";
-// import { Box, Typography, Container, Fade } from "@mui/material";
-// import Image from "next/image";
+
+import { Box, Typography, Container, Button } from "@mui/material";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { Link as IntlLink } from "@/navigation";
 
 interface HeroSectionProps {
-  imageUrl: string;
   title: string;
-  subtitle: string;
-  height?: string;
-  overlay?: boolean;
 }
 
-import React from "react";
-import { HeroParallax } from "@/app/_components/ui/hero-parallax";
-import { Box } from "@mui/material";
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
+  },
+};
 
-export function HeroParallaxDemo() {
-  return <HeroParallax products={products} />;
-}
-export const products = [
-  {
-    title: "Moonbeam",
-    link: "https://gomoonbeam.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/moonbeam.png",
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+    },
   },
-  {
-    title: "Cursor",
-    link: "https://cursor.so",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/cursor.png",
-  },
-  {
-    title: "Rogue",
-    link: "https://userogue.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/rogue.png",
-  },
+};
 
-  {
-    title: "Editorially",
-    link: "https://editorially.org",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/editorially.png",
-  },
-  {
-    title: "Editrix AI",
-    link: "https://editrix.ai",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/editrix.png",
-  },
-  {
-    title: "Pixel Perfect",
-    link: "https://app.pixelperfect.quest",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/pixelperfect.png",
-  },
-
-  {
-    title: "Algochurn",
-    link: "https://algochurn.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/algochurn.png",
-  },
-  {
-    title: "Aceternity UI",
-    link: "https://ui.aceternity.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/aceternityui.png",
-  },
-  {
-    title: "Tailwind Master Kit",
-    link: "https://tailwindmasterkit.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/tailwindmasterkit.png",
-  },
-  {
-    title: "SmartBridge",
-    link: "https://smartbridgetech.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/smartbridge.png",
-  },
-  {
-    title: "Renderwork Studio",
-    link: "https://renderwork.studio",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/renderwork.png",
-  },
-
-  {
-    title: "Creme Digital",
-    link: "https://cremedigital.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/cremedigital.png",
-  },
-  {
-    title: "Golden Bells Academy",
-    link: "https://goldenbellsacademy.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/goldenbellsacademy.png",
-  },
-  {
-    title: "Invoker Labs",
-    link: "https://invoker.lol",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/invoker.png",
-  },
-  {
-    title: "E Free Invoice",
-    link: "https://efreeinvoice.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/efreeinvoice.png",
-  },
-];
-
-export default function HeroSection({
-  // imageUrl,
-  // title,
-  // subtitle,
-  height = "300px",
-}: // overlay = true,
-HeroSectionProps) {
+export default function HeroSection({ title }: HeroSectionProps) {
   return (
     <Box
+      component="section"
       sx={{
-        position: "relative",
-        height,
-        mt: 8,
+        bgcolor: "#fff",
+        py: { xs: 12, md: 20 },
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "80vh",
+        mt: 0,
       }}
     >
-      {/* {HeroParallaxDemo()} */}
-      {/* <Fade in timeout={1000}>
-        <Box sx={{ position: "absolute", width: "100%", height: "100%" }}>
-          <Image
-            src={imageUrl}
-            alt={title}
-            fill
-            style={{ objectFit: "cover" }}
-            priority
-          />
-        </Box>
-      </Fade>
-
-      {overlay && (
-        <Box
-          sx={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0,0,0,0.4)",
-            transition: "background-color 0.5s ease",
-          }}
-        />
-      )}
-
-      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
-        <Fade in timeout={1500}>
-          <Box
-            sx={{
-              textAlign: "center",
-              color: "white",
-            }}
-          >
-            <Typography
-              variant="h1"
+      <Container maxWidth="md">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Logo */}
+          <motion.div variants={itemVariants} style={{ textAlign: "center" }}>
+            <Box
               sx={{
-                fontSize: { xs: "2.5rem", md: "4rem" },
-                fontWeight: 600,
-                mb: 3,
-                textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+                mb: 6,
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <Image
+                  src="/samle_logo.png"
+                  alt="Logo"
+                  width={400}
+                  height={300}
+                  style={{
+                    borderRadius: "12px",
+                    objectFit: "cover",
+                  }}
+                />
+              </motion.div>
+            </Box>
+          </motion.div>
+
+          {/* Title */}
+          <motion.div variants={itemVariants} style={{ textAlign: "center" }}>
+            <Typography
+              variant="h2"
+              component="h1"
+              sx={{
+                fontWeight: 700,
+                mb: 6,
+                color: "#2d4a47",
+                fontSize: { xs: "2.2rem", sm: "2.8rem", md: "3.5rem" },
+                letterSpacing: "-0.5px",
+                lineHeight: 1.2,
               }}
             >
               {title}
             </Typography>
-            <Typography
-              variant="h5"
-              sx={{
-                maxWidth: "800px",
-                mx: "auto",
-                opacity: 0.9,
-                textShadow: "0 2px 4px rgba(0,0,0,0.3)",
-              }}
-            >
-              {subtitle}
-            </Typography>
-          </Box>
-        </Fade> 
-      </Container> */}
+          </motion.div>
+
+          {/* Action Button */}
+          <motion.div variants={itemVariants} style={{ textAlign: "center" }}>
+            <IntlLink href="#contact" style={{ textDecoration: "none" }}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <Button
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    background:
+                      "linear-gradient(135deg, #6B9B8A 0%, #556b68 100%)",
+                    px: 6,
+                    py: 1.8,
+                    fontSize: "1.05rem",
+                    fontWeight: 600,
+                    textTransform: "none",
+                    borderRadius: "12px",
+                    boxShadow: "0 12px 32px rgba(107, 155, 138, 0.25)",
+                    transition: "all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                    "&:hover": {
+                      boxShadow: "0 16px 48px rgba(107, 155, 138, 0.35)",
+                      background:
+                        "linear-gradient(135deg, #5A8A79 0%, #455b57 100%)",
+                    },
+                  }}
+                >
+                  Start Your Journey
+                </Button>
+              </motion.div>
+            </IntlLink>
+          </motion.div>
+        </motion.div>
+      </Container>
     </Box>
   );
 }

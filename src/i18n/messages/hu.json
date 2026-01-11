@@ -17,13 +17,52 @@
   },
   "home": {
     "hero": {
-      "title": "Időtlen pillanatok megörökítése",
-      "subtitle": "Professzionális esküvői fotózás Magyarországon",
-      "cta": "Időpont egyeztetés"
+      "title": "Az Ön útja az érzelmi jóllét felé",
+      "subtitle": "Professzionális pszichológiai szolgáltatások egy nyugodt, barátságos környezetben",
+      "cta": "Időpont foglalás"
     },
-    "portfolio": {
-      "title": "Legújabb munkáink",
-      "subtitle": "Betekintés a legfrissebb esküvői fotósorozatainkba"
+    "introduction": {
+      "title": "Üdvözöljük gyakorlatánkon",
+      "description": "Mitől függően az Ön igényeit, együtt a mielőbb megoldani tudjuk. Öde gyönyörűen rendezett terméke egy olyan kényelmesen helyet biztosít, ahol biztonságban érzi magát és támogatás mellett kezdheti meg az érzelmi jóllét és személyes fejlődés felé vezető utat."
+    },
+    "services": {
+      "title": "Szolgáltatásaink",
+      "subtitle": "Szakosodott gondozás az Ön mentális egészségéért",
+      "items": {
+        "psychotherapy": {
+          "title": "Egyéni pszichoterápia",
+          "description": "Mitől függően szorongás, depresszió, stressz és személyes kihívások kezelésében végzett egy-egy terápias megközelítés."
+        },
+        "cognitive": {
+          "title": "Kognitív Viselkedés Terápia",
+          "description": "Praktikus technikák a negatív gondolatminták átformálásához és egészségesebb védekezési mechanizmusok felépítéséhez."
+        },
+        "couples": {
+          "title": "Páros Tanácsadás",
+          "description": "Professionális útmutatás a kommunikáció javítása, konfliktusok megoldása és érzelmi kapcsolat erősítéshez a kapcsolatban."
+        },
+        "family": {
+          "title": "Családterápia",
+          "description": "Családi dinamika gyógyítása és a tagok közötti megértés előmozdítása egy támogató terápiás környezetben."
+        },
+        "anxiety": {
+          "title": "Szorongáskezelés",
+          "description": "Szorongászavarok szakosodott kezelése bizonyított technikákkal, beleértve a tudatosságot és relaxációs stratégiákat."
+        },
+        "trauma": {
+          "title": "Trauma Gyógyulás",
+          "description": "Mitől függően támogatás a traumatikus élmények feldolgozásához és a biztonság érzetének és jólétének visszaszerzéséhez."
+        }
+      }
+    },
+    "gallery": {
+      "title": "Irodánk",
+      "subtitle": "Egy csendes tér az Ön kényelméhez"
+    },
+    "cta": {
+      "title": "Készen áll az utazás megkezdésére?",
+      "subtitle": "Támogatjuk Önt. Forduljon hozzánk még ma az első konzultáció egyeztetéséhez.",
+      "button": "Vett fel velünk a kapcsolatot"
     }
   },
   "contact": {

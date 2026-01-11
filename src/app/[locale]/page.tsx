@@ -1,115 +1,61 @@
-import { Box, Container, Typography, Grid } from "@mui/material";
-import Image from "next/image";
+import { Box } from "@mui/material";
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
 import HeroSection from "@/app/_components/hero/HeroSection";
-import { useTranslations } from "next-intl";
+import HomePageContent from "@/app/_components/home/HomePageContent";
 import { env } from "@/app/_config/env.config";
-export default function Home() {
-  const t = useTranslations("home");
-  // TODO: USE FRAMER_MOTION
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "OnlineBusiness",
-    name: "Slowly Glowing",
-    image: `${env.SITE_URL}/logo.jpg`,
-    "@id": `${env.SITE_URL}`,
-    url: `${env.SITE_URL}`,
-    telephone: "+1-555-123-4567",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "123 Creative Studio St.",
-      addressLocality: "New York",
-      postalCode: "10001",
-      addressCountry: "US",
+import { Metadata } from "next";
+
+interface Params {
+  locale: string;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<Params>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isHungarian = locale === "hu";
+
+  return {
+    title: isHungarian
+      ? "Pszichológia Kabinet - Mentális Egészség Tanácsadás"
+      : "Psychology Cabinet - Professional Mental Health Services",
+    description: isHungarian
+      ? "Komprehenzív pszichológiai szolgáltatások Budapesten. Egyéni pszichoterápia, páros tanácsadás, családterápia és más mentális egészség szolgáltatások."
+      : "Comprehensive mental health services in Budapest. Individual psychotherapy, couples counseling, family therapy, and professional psychological care.",
+    alternates: {
+      canonical: `${env.SITE_URL}/${locale}`,
+      languages: {
+        en: `${env.SITE_URL}/en`,
+        hu: `${env.SITE_URL}/hu`,
+      },
     },
-    priceRange: "€€€",
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "18:00",
+    openGraph: {
+      title: isHungarian ? "Pszichológia Kabinet" : "Psychology Cabinet",
+      description: isHungarian
+        ? "Mentális egészség tanácsadás és pszichológiai terápia Budapesten"
+        : "Professional mental health and psychological services in Budapest",
+      images: [
+        {
+          url: `${env.SITE_URL}/logo.jpg`,
+          width: 1200,
+          height: 630,
+          alt: isHungarian ? "Pszichológia Kabinet" : "Psychology Cabinet",
+        },
+      ],
     },
   };
+}
 
+export default function Home() {
   return (
     <Box>
       <Header />
-
-      {/* Hero Section */}
-      <HeroSection
-        imageUrl="/hero_img.jpg"
-        title={t("hero.title")}
-        subtitle={t("hero.subtitle")}
-        height="100vh"
-      />
-
-      {/* Portfolio Preview */}
-      <Box sx={{ py: { xs: 12, md: 16 }, bgcolor: "#f8f8f8" }}>
-        <Container maxWidth="lg">
-          <Typography
-            variant="h3"
-            sx={{
-              textAlign: "center",
-              mb: 2,
-              fontWeight: 600,
-              letterSpacing: "-0.5px",
-              color: "#666",
-            }}
-          >
-            Recent Works
-          </Typography>
-          <Typography
-            sx={{
-              textAlign: "center",
-              mb: 8,
-              color: "#666",
-              fontSize: "1.1rem",
-              maxWidth: 600,
-              mx: "auto",
-            }}
-          >
-            A glimpse into our latest wedding photography collections
-          </Typography>
-          <Grid container spacing={3}>
-            {[
-              "https://images.unsplash.com/photo-1519225421980-715cb0215aed",
-              "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6",
-              "https://images.unsplash.com/photo-1511285560929-80b456fea0bc",
-            ].map((img, index) => (
-              <Grid item xs={12} md={4} key={index}>
-                <Box
-                  sx={{
-                    position: "relative",
-                    height: 500,
-                    borderRadius: 2,
-                    overflow: "hidden",
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
-                    transition: "transform 0.3s ease-in-out",
-                    "&:hover": {
-                      transform: "translateY(-10px)",
-                    },
-                  }}
-                >
-                  <Image
-                    src={img}
-                    alt={`Portfolio ${index + 1}`}
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
-
+      <HeroSection title="Your Path to Emotional Wellness" />
+      <HomePageContent />
       <Footer />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
     </Box>
   );
 }
