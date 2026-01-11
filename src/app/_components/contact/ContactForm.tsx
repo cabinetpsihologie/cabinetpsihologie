@@ -11,6 +11,8 @@ import {
 import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import emailjs from "@emailjs/browser";
+import { FaArrowRight } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function ContactForm() {
   const t = useTranslations("contact");
@@ -110,28 +112,40 @@ export default function ContactForm() {
           required
           sx={{ mt: 3 }}
         />
-
-        <Button
-          type="submit"
-          variant="contained"
-          size="large"
-          disabled={loading}
-          sx={{
-            mt: 3,
-            bgcolor: "#1a1a1a",
-            color: "white",
-            py: 2,
-            px: 6,
-            borderRadius: "30px",
-            "&:hover": {
-              bgcolor: "#333",
-              transform: "translateY(-2px)",
-            },
-            transition: "all 0.3s ease",
-          }}
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          {loading ? "Sending..." : t("form.submit")}
-        </Button>
+          <Button
+            type="submit"
+            disabled={loading}
+            variant="outlined"
+            sx={{
+              borderColor: "#6B9B8A",
+              color: "#6B9B8A",
+              mt: 3,
+              px: 4,
+              py: 1.2,
+              fontSize: "1rem",
+              fontWeight: 600,
+              textTransform: "none",
+              borderRadius: "12px",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 1.5,
+              transition: "all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
+              "&:hover": {
+                borderColor: "#556b68",
+                color: "#556b68",
+                backgroundColor: "rgba(107, 155, 138, 0.05)",
+              },
+            }}
+          >
+            {loading ? "Sending..." : t("form.submit")}
+            <FaArrowRight size={14} />
+          </Button>
+        </motion.div>
       </Box>
 
       <Snackbar
