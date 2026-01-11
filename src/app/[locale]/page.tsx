@@ -188,7 +188,10 @@ export default function Home() {
       <BlogSection /> <div id="contact"></div>
       {/* Contact Section */}
       <Box sx={{ bgcolor: "#fff" }}>
-        <Divider variant="middle" sx={{ borderColor: "lightgray" }} />
+        <Divider
+          variant="middle"
+          sx={{ borderColor: "lightgray", width: "70%", margin: "auto" }}
+        />
       </Box>
       <Box sx={{ py: { xs: 6, md: 10 }, bgcolor: "#fff" }}>
         <Container maxWidth="lg">
@@ -246,7 +249,10 @@ export default function Home() {
         </Container>
       </Box>
       <Box sx={{ bgcolor: "#fff" }}>
-        <Divider variant="middle" sx={{ borderColor: "lightgray" }} />
+        <Divider
+          variant="middle"
+          sx={{ borderColor: "lightgray", width: "70%", margin: "auto" }}
+        />
       </Box>
       {/* Map Section */}
       <GoogleMapSection

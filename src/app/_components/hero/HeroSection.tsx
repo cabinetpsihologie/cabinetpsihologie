@@ -66,10 +66,10 @@ export default function HeroSection({ title }: HeroSectionProps) {
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
                 <Image
-                  src="/logo.jpg"
+                  src="/samle_logo.png"
                   alt="Logo"
-                  width={80}
-                  height={80}
+                  width={400}
+                  height={300}
                   style={{
                     borderRadius: "12px",
                     objectFit: "cover",
