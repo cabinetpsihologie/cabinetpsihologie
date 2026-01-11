@@ -62,10 +62,10 @@ export default function About() {
 
       {/* Hero Section */}
       <HeroSection
-        imageUrl="https://images.unsplash.com/photo-1604017011826-d3b4c23f8914"
+        // imageUrl="https://images.unsplash.com/photo-1604017011826-d3b4c23f8914"
         title={t("title")}
-        subtitle={t("subtitle")}
-        height="50vh"
+        // subtitle={t("subtitle")}
+        // height="50vh"
       />
 
       {/* About Content */}
