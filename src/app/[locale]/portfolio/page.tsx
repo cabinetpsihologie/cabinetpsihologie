@@ -74,10 +74,10 @@ export default function Portfolio() {
 
       {/* Hero Section */}
       <HeroSection
-        imageUrl="/portfolio_hero.jpg"
+        // imageUrl="/portfolio_hero.jpg"
         title={t("title")}
-        subtitle={t("subtitle")}
-        height="70vh"
+        // subtitle={t("subtitle")}
+        // height="70vh"
       />
 
       {/* Portfolio Gallery */}
