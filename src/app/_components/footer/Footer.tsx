@@ -364,7 +364,7 @@ export default function Footer() {
             <Divider
               sx={{
                 mb: 4,
-                borderColor: "rgba(200, 220, 220, 0.3)",
+                borderColor: "rgba(165, 165, 165, 0.9)",
               }}
             />
           </motion.div>

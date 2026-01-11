@@ -42,7 +42,7 @@ export default function HeroSection({ title }: HeroSectionProps) {
         alignItems: "center",
         justifyContent: "center",
         minHeight: "80vh",
-        mt: 8,
+        mt: 0,
       }}
     >
       <Container maxWidth="md">
