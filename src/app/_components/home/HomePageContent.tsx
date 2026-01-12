@@ -161,7 +161,7 @@ export default function HomePageContent() {
       <BlogSection />
 
       {/* Contact Section */}
-
+      <div id="contact"></div>
       <Box sx={{ bgcolor: "#fff" }}>
         <Divider variant="middle" sx={{ width: "70%", margin: "auto" }} />
       </Box>
@@ -213,6 +213,7 @@ export default function HomePageContent() {
           </Grid>
         </Container>
       </Box>
+
       <Box sx={{ bgcolor: "#fff" }}>
         <Divider variant="middle" sx={{ width: "70%", margin: "auto" }} />
       </Box>
