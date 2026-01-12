@@ -67,7 +67,9 @@ export default function ContactHero() {
                 mx: "auto",
               }}
             >
-              I&apos;m here to support you. Whether you have questions about my services or you&apos;re ready to start your journey toward better mental health, I&apos;d love to hear from you.
+              I&apos;m here to support you. Whether you have questions about my
+              services or you&apos;re ready to start your journey toward better
+              mental health, I&apos;d love to hear from you.
             </Typography>
           </motion.div>
 

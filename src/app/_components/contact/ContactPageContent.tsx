@@ -15,7 +15,9 @@ interface ContactPageContentProps {
   contactInfo: ContactInfo[];
 }
 
-export default function ContactPageContent({ contactInfo }: ContactPageContentProps) {
+export default function ContactPageContent({
+  contactInfo,
+}: ContactPageContentProps) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -77,7 +79,8 @@ export default function ContactPageContent({ contactInfo }: ContactPageContentPr
                 maxWidth: "600px",
               }}
             >
-              I&apos;m here to help. Reach out with any questions, and let&apos;s discuss how I can support your mental health journey.
+              I&apos;m here to help. Reach out with any questions, and
+              let&apos;s discuss how I can support your mental health journey.
             </Typography>
           </motion.div>
 
@@ -98,7 +101,8 @@ export default function ContactPageContent({ contactInfo }: ContactPageContentPr
                         sx={{
                           p: 4,
                           borderRadius: "12px",
-                          background: "linear-gradient(135deg, rgba(245, 252, 250, 0.6) 0%, rgba(250, 248, 255, 0.6) 100%)",
+                          background:
+                            "linear-gradient(135deg, rgba(245, 252, 250, 0.6) 0%, rgba(250, 248, 255, 0.6) 100%)",
                           border: "1px solid rgba(200, 220, 220, 0.3)",
                           transition: "all 0.3s ease",
                           "&:hover": {
@@ -175,7 +179,8 @@ export default function ContactPageContent({ contactInfo }: ContactPageContentPr
                   sx={{
                     p: 4,
                     borderRadius: "12px",
-                    background: "linear-gradient(135deg, rgba(245, 252, 250, 0.4) 0%, rgba(250, 248, 255, 0.4) 100%)",
+                    background:
+                      "linear-gradient(135deg, rgba(245, 252, 250, 0.4) 0%, rgba(250, 248, 255, 0.4) 100%)",
                     border: "1px solid rgba(200, 220, 220, 0.3)",
                     height: "100%",
                     display: "flex",
