@@ -180,10 +180,10 @@ export default function Header() {
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <Image
-                    src="/samle_logo.png"
+                    src="/logo.svg"
                     alt="Psychology Cabinet"
-                    width={70}
-                    height={70}
+                    width={60}
+                    height={60}
                     priority
                     style={{
                       transition: "width 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
