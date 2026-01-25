@@ -72,7 +72,7 @@ export default function Footer() {
       <Box
         sx={{
           background:
-            "linear-gradient(135deg, rgba(245, 252, 250, 0.8) 0%, rgba(250, 248, 255, 0.8) 100%)",
+            "linear-gradient(135deg, rgba(187, 194, 192, 0.8) 0%, rgba(213, 211, 218, 0.8) 100%)",
           backdropFilter: "blur(10px)",
           borderTop: "1px solid rgba(200, 220, 220, 0.25)",
           pt: { xs: 8, md: 12 },
