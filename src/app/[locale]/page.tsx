@@ -51,7 +51,7 @@ export async function generateMetadata({
 
 export default function Home() {
   return (
-    <Box>
+    <Box sx={{ bgcolor: "#f9f9f9" }}>
       <Header />
       <HeroSection title="Your Path to Emotional Wellness" />
       <HomePageContent />

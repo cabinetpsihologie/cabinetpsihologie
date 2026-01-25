@@ -29,7 +29,13 @@ export default function OfficeGallery({ title, subtitle }: OfficeGalleryProps) {
   ];
 
   return (
-    <Box sx={{ py: { xs: 12, md: 16 }, bgcolor: "rgba(250, 252, 252, 0.5)" }}>
+    <Box
+      sx={{
+        py: { xs: 12, md: 16 },
+        background:
+          "linear-gradient(135deg, rgba(187, 194, 192, 0.8) 0%, rgba(213, 211, 218, 0.8) 100%)",
+      }}
+    >
       <Container maxWidth="lg">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
